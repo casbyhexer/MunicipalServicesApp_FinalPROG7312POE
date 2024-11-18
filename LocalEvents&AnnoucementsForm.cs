@@ -95,29 +95,18 @@ namespace MunicipalServicesApp
                 // Clear existing items in the ListView
                 eventsListView.Items.Clear();
 
-                // Retrieve events from the priority queue
-                var eventQueue = PriorityQueue.PriorityQueue.GetEventQueue();
+                // Retrieve events from the priority queue (instance of PriorityQueue)
+                PriorityQueue.PriorityQueue eventQueue = PriorityQueueManager.GetEventQueue();
 
-                if (eventQueue == null || PriorityQueue.PriorityQueue.IsEmpty(eventQueue))
+                if (eventQueue == null || eventQueue.IsEmpty())
                 {
                     MessageBox.Show("No events to display. The priority queue is empty.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
 
-                while (!PriorityQueue.PriorityQueue.IsEmpty(eventQueue))
+                // Loop through all events in the queue
+                foreach (var nextEvent in eventQueue.GetAllEvents())
                 {
-                    // Safely retrieve the next event
-                    Event nextEvent = PriorityQueue.PriorityQueue.Peek(eventQueue);
-
-                    if (nextEvent == null)
-                    {
-                        // Skip if the event is null (unexpected case)
-                        eventQueue = PriorityQueue.PriorityQueue.Pop(eventQueue);
-                        continue;
-                    }
-
-                    eventQueue = PriorityQueue.PriorityQueue.Pop(eventQueue);
-
                     // Add the event to the ListView
                     var listItem = new ListViewItem(new string[]
                     {
@@ -126,6 +115,7 @@ namespace MunicipalServicesApp
                 nextEvent.Category,
                 nextEvent.Priority.ToString()
                     });
+
                     eventsListView.Items.Add(listItem);
 
                     // Add the event to the SortedDictionary
@@ -143,6 +133,7 @@ namespace MunicipalServicesApp
                 MessageBox.Show($"An error occurred while populating events: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        
         private void PopulateCategoryComboBox()
         {
             categoryComboBox.Items.Clear(); // Clears existing items

@@ -117,6 +117,11 @@
             this.categoryComboBox.BackColor = System.Drawing.SystemColors.InfoText;
             this.categoryComboBox.ForeColor = System.Drawing.SystemColors.Info;
             this.categoryComboBox.FormattingEnabled = true;
+            this.categoryComboBox.Items.AddRange(new object[] {
+            "",
+            "Community",
+            "Festivity",
+            "Community"});
             this.categoryComboBox.Location = new System.Drawing.Point(660, 318);
             this.categoryComboBox.Name = "categoryComboBox";
             this.categoryComboBox.Size = new System.Drawing.Size(121, 28);

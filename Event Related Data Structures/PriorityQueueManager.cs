@@ -63,6 +63,16 @@ namespace MunicipalServicesApp.PriorityQueue
             var allEvents = GetAllEvents(); // Retrieve all events
             return allEvents.Where(ev => ev.EventName.ToLower().Contains(searchTerm.ToLower()));
         }
+
+        // Filter events based on a specific date
+        public static List<Event> FilterEventsByDate(DateTime selectedDate)
+        {
+            return eventQueue.GetAllEvents()
+                .Where(ev => ev.Date.Date == selectedDate.Date) // Match only the date part
+                .ToList();
+        }
+
+       
     }
 }
 

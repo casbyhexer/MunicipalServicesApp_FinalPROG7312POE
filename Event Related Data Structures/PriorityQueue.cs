@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MunicipalServicesApp.Advanced_Data_Structures;
+using System;
 using System.Collections.Generic;
 
 namespace MunicipalServicesApp.PriorityQueue
@@ -60,9 +61,12 @@ namespace MunicipalServicesApp.PriorityQueue
         /// </summary>
         public void Push(Event data, int priority)
         {
+            Guard.AgainstNull(data, nameof(data));
+            Guard.AgainstOutOfRange(priority, 0, 10, nameof(priority));
+
+            // Add the event to the priority queue
             Node temp = new Node(data, priority);
 
-            // Special Case: The head of the list has lower priority than the new node
             if (head == null || head.Priority > priority)
             {
                 temp.Next = head;
@@ -70,7 +74,6 @@ namespace MunicipalServicesApp.PriorityQueue
             }
             else
             {
-                // Traverse the list and find a position to insert the new node
                 Node start = head;
                 while (start.Next != null && start.Next.Priority <= priority)
                 {
@@ -102,5 +105,6 @@ namespace MunicipalServicesApp.PriorityQueue
                 current = current.Next;
             }
         }
+
     }
 }

@@ -59,6 +59,8 @@
     <Compile Include="Advanced Data Structures\HeapDataStructure\MaxHeap.cs" />
     <Compile Include="Advanced Data Structures\ServiceRequest.cs" />
     <Compile Include="Advanced Data Structures\Throw.cs" />
+    <Compile Include="Event Related Data Structures\Guard2.cs" />
+    <Compile Include="Event Related Data Structures\Throw2.cs" />
     <Compile Include="Issue.cs" />
     <Compile Include="LocalEvents&amp;AnnoucementsForm.cs">
       <SubType>Form</SubType>

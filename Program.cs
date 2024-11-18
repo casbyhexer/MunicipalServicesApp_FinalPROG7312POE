@@ -1,4 +1,5 @@
-﻿using MunicipalServicesApp.PriorityQueue;
+﻿using MunicipalServicesApp.Event_Related_Data_Structures;
+using MunicipalServicesApp.PriorityQueue;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,20 +20,21 @@ namespace MunicipalServicesApp
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new WelcomeScreen());
 
-            /*// Get a priority queue filled with events
-            PriorityQueue.Node eventQueue = PriorityQueueHelper.GetPriorityEventQueue();
-
-            // Retrieve events in priority order
-            List<Event> eventsInOrder = PriorityQueueHelper.GetEventsInPriorityOrder(eventQueue);
-
-            // Display the events
-            Console.WriteLine("Events in Priority Order:");
-            foreach (var ev in eventsInOrder)
+            /*try
             {
-                Console.WriteLine($"Event: {ev.EventName}, Priority: {ev.Priority}, Date: {ev.Date.ToShortDateString()}");
-            }
+                // Example: Check for null
+                Guard2.AgainstNull(null, "TestParameter");
 
-            Console.ReadLine();*/
+                // Example: Check for null or empty
+                Guard2.AgainstNullOrEmpty("", "TestString");
+
+                // Example: Check for out-of-range
+                Guard2.AgainstOutOfRange(15, 1, 10, "TestValue");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }*/
         }
     }
 }
